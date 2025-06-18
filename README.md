@@ -1,10 +1,18 @@
 # 🌀 Change Data Capture Demo: PostgreSQL + Debezium + Kafka
 
+<<<<<<< HEAD
 ## 📌 Tujuan Proyek Ini
 Repositori ini merupakan demonstrasi sederhana tentang bagaimana kita bisa menerapkan **Change Data Capture (CDC)** menggunakan:
 
 - **PostgreSQL** sebagai sumber data (source database)
 - **Debezium** sebagai engine CDC yang membaca perubahan dari PostgreSQL
+=======
+## 📌 Tujuan Repository Ini
+Repositori ini merupakan demonstrasi sederhana tentang bagaimana kita bisa menerapkan **Change Data Capture (CDC)** menggunakan:
+
+- **PostgreSQL** sebagai sumber data (source database)
+- **Debezium** sebagai engine Change Data Capture (CDC) yang membaca perubahan dari PostgreSQL
+>>>>>>> 47099e0 (docs: improve README with full project context, architecture, and setup steps)
 - **Kafka** sebagai message broker untuk menyebarkan event perubahan
 - **Node.js** consumer yang mendengarkan perubahan dari Kafka dan memprosesnya
 
@@ -16,6 +24,7 @@ Repositori ini merupakan demonstrasi sederhana tentang bagaimana kita bisa mener
 
 ```
 +---------------+           +---------------------+          +-----------------+
+<<<<<<< HEAD
 | PostgreSQL DB | ───────▶ |  Debezium Connector | ───────▶ | Kafka Topic     |
 |  (inventory)  |           |   (Connect REST API)|          | pgserver1.*     |
 +---------------+           +---------------------+          +-----------------+
@@ -25,6 +34,17 @@ Repositori ini merupakan demonstrasi sederhana tentang bagaimana kita bisa mener
                                                     | Kafka Consumer App  |
                                                     |  (Node.js + kafkajs)|
                                                     +---------------------+
+=======
+| PostgreSQL DB | ───────▶  |  Debezium Connector | ───────▶ | Kafka Topic     |
+|  (inventory)  |           |   (Connect REST API)|          | pgserver1.*     |
++---------------+           +---------------------+          +-----------------+
+                                                                      │
+                                                                      ▼
+                                                            +---------------------+
+                                                            | Kafka Consumer App  |
+                                                            |  (Node.js + kafkajs)|
+                                                            +---------------------+
+>>>>>>> 47099e0 (docs: improve README with full project context, architecture, and setup steps)
 ```
 
 ---
@@ -133,6 +153,9 @@ Kamu akan melihat log event seperti berikut:
 - Mengetahui arsitektur streaming data real-time
 - Menyimulasikan sistem integrasi antar layanan berbasis event
 
+<<<<<<< HEAD
 ---
 
 > Dibuat oleh [@abdulwahidm](https://github.com/abdulwahidm) — feel free to fork dan explore!
+=======
+>>>>>>> 47099e0 (docs: improve README with full project context, architecture, and setup steps)
