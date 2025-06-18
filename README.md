@@ -1,8 +1,38 @@
-# 🌀 Change Data Capture Demo: PostgreSQL + Debezium + Kafka
+# 🌀 CDC Demo: PostgreSQL + Debezium + Kafka
 
-## Setup
+## 📌 Tujuan Repositori Ini
+Repositori ini merupakan demonstrasi sederhana tentang bagaimana kita bisa menerapkan **Change Data Capture (CDC)** menggunakan:
 
-\`\`\`bash
+- **PostgreSQL** sebagai sumber data (source database)
+- **Debezium** sebagai engine change data capture (CDC) yang membaca perubahan dari PostgreSQL
+- **Kafka** sebagai message broker untuk menyebarkan event perubahan
+- **Node.js** consumer yang mendengarkan perubahan dari Kafka dan memprosesnya
+
+🎯 **Goal utama**: Memahami bagaimana *insert/update/delete* data di database dapat menghasilkan event real-time dan bagaimana event ini bisa dikonsumsi oleh aplikasi lain (event-driven architecture).
+
+---
+
+## 🏗️ Arsitektur
+
+```
++---------------+           +---------------------+          +-----------------+
+| PostgreSQL DB | ───────▶  |  Debezium Connector | ───────▶ | Kafka Topic     |
+|  (inventory)  |           |   (Connect REST API)|          | pgserver1.*     |
++---------------+           +---------------------+          +-----------------+
+                                                                    │
+                                                                    ▼
+                                                          +---------------------+
+                                                          | Kafka Consumer App  |
+                                                          |  (Node.js + kafkajs)|
+                                                          +---------------------+
+```
+
+---
+
+## 🚀 Setup Lokal
+
+### 1. Jalankan Semua Layanan
+```bash
 docker-compose up -d
 ```
 
@@ -66,4 +96,41 @@ npm install kafkajs
 ### 2. Jalankan
 ```bash
 node kafka-consumer.js
-\`\`\`
+```
+
+Kamu akan melihat log event seperti berikut:
+```bash
+📥 CDC Event: {
+  before: { id: 1, name: 'Apple', price: 10 },
+  after: null,
+  op: 'd' // delete
+}
+```
+
+---
+
+## 📦 Struktur Folder
+```
+.
+├── docker-compose.yml
+├── init
+│   └── init.sql
+├── kafka-consumer.js
+└── README.md
+```
+
+---
+
+## 📚 Referensi
+- https://debezium.io/
+- https://kafka.apache.org/
+- https://www.confluent.io/
+
+---
+
+## 🧠 Manfaat Demo Ini
+- Memahami proses CDC dengan Debezium
+- Mengetahui arsitektur streaming data real-time
+- Menyimulasikan sistem integrasi antar layanan berbasis event
+
+---
